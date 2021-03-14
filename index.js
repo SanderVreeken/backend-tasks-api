@@ -1,22 +1,10 @@
-require('dotenv').config({
-    path: './.env.local'
-})
-
-var port = process.env.PORT || 8080;
-
+require('dotenv').config({ path: './.env.local' })
 const { ApolloServer } = require('apollo-server')
 const mongoose = require('mongoose')
 mongoose.connect(process.env.MONGODB_URI)
-const typeDefs = require('./schema')
-// const tasks = require('./mockdata/tasks')
 
-const Task = mongoose.model('Task',{
-    _id: String,
-    description: String,
-    dueAt: Number,
-    flagged: Boolean,
-    name: String
-})
+const typeDefs = require('./schema')
+const Task = require('./models/Task.model')
 
 const resolvers = {
     Query: {
@@ -35,7 +23,7 @@ server.listen().then(({ url }) => {
     console.log(`Tasks server ready at ${url}`)
 })
 
-
+const port = process.env.PORT || 8080
 server.listen(port, () => {
     console.log('The application is running on port ' + port);
 });
