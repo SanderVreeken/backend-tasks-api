@@ -4,12 +4,11 @@ const mongoose = require('mongoose')
 mongoose.connect(process.env.MONGODB_URI)
 
 const typeDefs = require('./schema')
-const Task = require('./models/Task.model')
+
+const taskResolvers = require('./resolvers/tasks')
 
 const resolvers = {
-    Query: {
-        readTasks: () => Task.find()
-    }
+    taskResolvers
 }
 
 const server = new ApolloServer({ 
