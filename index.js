@@ -4,11 +4,10 @@ const mongoose = require('mongoose')
 mongoose.connect(process.env.MONGODB_URI)
 
 const typeDefs = require('./schema')
-const taskResolvers = require('./resolvers/tasks')
 
 const resolvers = {
     Query: {
-        taskResolvers
+        readTasks: () => Task.find()
     }
 }
 
