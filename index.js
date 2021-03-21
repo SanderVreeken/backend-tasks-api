@@ -1,5 +1,5 @@
 require('dotenv').config({ path: './.env.local' })
-const { ApolloServer } = require('apollo-server-express')
+const { ApolloServer, gql } = require('apollo-server-express')
 const express = require('express')
 const merge = require('lodash').merge
 const mongoose = require('mongoose')
