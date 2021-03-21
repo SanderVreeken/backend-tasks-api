@@ -4,6 +4,8 @@ const express = require('express')
 const mongoose = require('mongoose')
 mongoose.connect(process.env.MONGODB_URI)
 
+import { merge } from 'lodash'
+
 const app = express()
 
 const Task = require('./typeDefs/task')
@@ -12,17 +14,12 @@ const Query = /* GraphQL */ `
         readTasks: [Task!]
     }
 `
-
-const TaskM = require('./models/Task.model')
-const resolvers = {
-    Query: {
-        readTasks: () => TaskM.find()
-    }
-}
+import { TaskResolvers } from './resolvers/task'
+const resolvers = {}
 
 const server = new ApolloServer({ 
     typeDefs: [ Query, Task ],
-    resolvers,
+    resolvers: merge(resolvers, TaskResolvers),
     introspection: true,
     playground: true,  
 })
