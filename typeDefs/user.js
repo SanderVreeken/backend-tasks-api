@@ -14,4 +14,4 @@ const User = /* GraphQL */ gql`
     }
 `
 
-module.exports = Task
+module.exports = User

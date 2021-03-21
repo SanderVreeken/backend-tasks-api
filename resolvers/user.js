@@ -7,4 +7,4 @@ const UserResolvers = {
     }
 }
 
-module.exports = TaskResolvers
+module.exports = UserResolvers
