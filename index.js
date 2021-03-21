@@ -14,7 +14,7 @@ const Query = /* GraphQL */ `
         readTasks: [Task!]
     }
 `
-import { TaskResolvers } from './resolvers/task'
+const TaskResolvers = require('./resolvers/task')
 const resolvers = {}
 
 const server = new ApolloServer({ 

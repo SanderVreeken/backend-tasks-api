@@ -1,7 +1,9 @@
 const TaskM = require('./models/Task.model')
-export const TaskResolvers = {
+const TaskResolvers = {
     Query: {
         readTasks: () => TaskM.find()
     }
 }
+
+module.exports = TaskResolvers
 
