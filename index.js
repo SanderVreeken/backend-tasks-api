@@ -1,24 +1,31 @@
-require('dotenv').config({ path: './.env.local' })
-const { ApolloServer } = require('apollo-server')
-const mongoose = require('mongoose')
-mongoose.connect(process.env.MONGODB_URI)
+const express = require('express')
+const { ApolloServer } = require('apollo-server-express')
 
-const typeDefs = require('./schema')
+const app = express()
 
+const Task = require('./typeDefs/task')
+const Query = /* GraphQL */ `
+    type Query {
+        readTasks: [Task!]
+    }
+`
+
+const TaskM = require('./models/Task.model')
 const resolvers = {
     Query: {
-        readTasks: () => Task.find()
+        readTasks: () => TaskM.find()
     }
 }
 
 const server = new ApolloServer({ 
-    typeDefs, 
-    resolvers, 
+    typeDefs: [ Query, Task ],
+    resolvers,
     introspection: true,
-    playground: true, 
+    playground: true,  
 })
+server.applyMiddleware({ app })
 
 const port = process.env.PORT || 8080
-server.listen(port, () => {
-    console.log('The application is running on port ' + port);
-});
+app.listen({ port }, () =>
+  console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
+)

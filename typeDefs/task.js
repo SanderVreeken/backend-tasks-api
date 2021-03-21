@@ -1,4 +1,6 @@
-export const typeDef = /* GraphQL */ `
+const { gql } = require('apollo-server-express')
+
+const Task = /* GraphQL */ gql`
     type Task {
         _id: ID
         description: String
@@ -8,3 +10,4 @@ export const typeDef = /* GraphQL */ `
     }
 `
 
+module.exports = Task

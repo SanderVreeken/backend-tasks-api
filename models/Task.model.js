@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const Task = mongoose.model('Task', {
+const TaskM = mongoose.model('Task', {
     _id: String,
     description: String,
     dueAt: Number,
@@ -7,4 +7,4 @@ const Task = mongoose.model('Task', {
     name: String
 })
 
-module.exports = Task
+module.exports = TaskM
