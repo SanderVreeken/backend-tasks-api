@@ -15,7 +15,7 @@ const app = express()
 const typeDefs = /* GraphQL */ gql`
     type Query {
         readTasks: [Task!]
-        readUser: Boolean!
+        readUsers: Boolean!
     }
 `
 
