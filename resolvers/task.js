@@ -7,4 +7,3 @@ const TaskResolvers = {
 }
 
 module.exports = TaskResolvers
-

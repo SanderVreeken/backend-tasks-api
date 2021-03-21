@@ -6,13 +6,15 @@ const mongoose = require('mongoose')
 mongoose.connect(process.env.MONGODB_URI)
 
 const Task = require('./typeDefs/task')
+const User = require('./typeDefs/user')
 const TaskResolvers = require('./resolvers/task')
+const UserResolvers = require('./resolvers/user')
 
 const app = express()
 
 const server = new ApolloServer({ 
-    typeDefs: [ Task ],
-    resolvers: merge(TaskResolvers),
+    typeDefs: [ Task, User ],
+    resolvers: merge(TaskResolvers, UserResolvers),
     introspection: true,
     playground: true,  
 })
