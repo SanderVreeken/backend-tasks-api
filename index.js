@@ -1,25 +1,18 @@
 require('dotenv').config({ path: './.env.local' })
 const { ApolloServer } = require('apollo-server-express')
 const express = require('express')
+const merge = require('lodash').merge
 const mongoose = require('mongoose')
 mongoose.connect(process.env.MONGODB_URI)
 
-const merge = require('lodash').merge
+const Task = require('./typeDefs/task')
+const TaskResolvers = require('./resolvers/task')
 
 const app = express()
 
-const Task = require('./typeDefs/task')
-const Query = /* GraphQL */ `
-    type Query {
-        readTasks: [Task!]
-    }
-`
-const TaskResolvers = require('./resolvers/task')
-const resolvers = {}
-
 const server = new ApolloServer({ 
-    typeDefs: [ Query, Task ],
-    resolvers: merge(resolvers, TaskResolvers),
+    typeDefs: [ Task ],
+    resolvers: merge(TaskResolvers),
     introspection: true,
     playground: true,  
 })
