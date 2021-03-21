@@ -12,8 +12,15 @@ const UserResolvers = require('./resolvers/user')
 
 const app = express()
 
+const typeDefs = /* GraphQL */ gql`
+    type Query {
+        readTasks: [Task!]
+        readUser: Boolean!
+    }
+`
+
 const server = new ApolloServer({ 
-    typeDefs: [ Task, User ],
+    typeDefs: [ typeDefs, Task, User ],
     resolvers: merge(TaskResolvers, UserResolvers),
     introspection: true,
     playground: true,  
