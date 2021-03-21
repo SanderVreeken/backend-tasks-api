@@ -1,5 +1,8 @@
-const express = require('express')
+require('dotenv').config({ path: './.env.local' })
 const { ApolloServer } = require('apollo-server-express')
+const express = require('express')
+const mongoose = require('mongoose')
+mongoose.connect(process.env.MONGODB_URI)
 
 const app = express()
 
