@@ -2,17 +2,17 @@ const { gql } = require('apollo-server-express')
 
 const Task = /* GraphQL */ gql`
     input TaskInput {
-        description: String
-        dueAt: Float
-        flagged: Boolean
-        name: String
+        description: String!
+        dueAt: Float!
+        flagged: Boolean!
+        name: String!
     }
     type Task {
-        _id: ID
-        description: String
-        dueAt: Float
-        flagged: Boolean
-        name: String
+        _id: ID!
+        description: String!
+        dueAt: Float!
+        flagged: Boolean!
+        name: String!
     }
 `
 

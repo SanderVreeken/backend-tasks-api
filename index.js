@@ -19,7 +19,7 @@ app.use(cookieParser())
 const typeDefs = /* GraphQL */ gql`
     type Mutation {
         createTask(task: TaskInput!): Task!
-        createUser: Boolean!
+        createUser(user: UserInput!): Boolean!
     }
     type Query {
         readTasks: [Task!]

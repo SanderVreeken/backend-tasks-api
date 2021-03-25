@@ -13,6 +13,7 @@
   "dependencies": {
     "apollo-server": "^2.21.1",
     "apollo-server-express": "^2.21.1",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "cookies": "^0.8.0",
     "dotenv": "^8.2.0",
