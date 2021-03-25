@@ -13,6 +13,7 @@ const TaskResolvers = require('./resolvers/task')
 const UserResolvers = require('./resolvers/user')
 
 const app = express()
+
 app.use(cookieParser())
 
 const typeDefs = /* GraphQL */ gql`
