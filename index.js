@@ -20,6 +20,7 @@ const typeDefs = /* GraphQL */ gql`
     type Mutation {
         createTask(task: TaskInput!): Task!
         createUser(user: UserInput!): Boolean!
+        updateTask(_id: String!, task: TaskInput!): Task!
     }
     type Query {
         readTasks: [Task!]

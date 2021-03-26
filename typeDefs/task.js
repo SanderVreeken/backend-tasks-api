@@ -9,6 +9,8 @@ const Task = /* GraphQL */ gql`
     }
     type Task {
         _id: ID!
+        createdAt: Float!,
+        createdBy: ID!
         description: String!
         dueAt: Float!
         flagged: Boolean!
