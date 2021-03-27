@@ -5,9 +5,10 @@ const setCookie = (context, date, token) => {
         // Only retrievable per server request, not in the client.
         httpOnly: true,
         expires: date,
-        sameSite: true,
+        // domain: 'http://localhost:3000',
+        sameSite: false,
         // Meaning the cookie will only be send in case of https request.
-        // secure: true
+        secure: false
     })
 }
 

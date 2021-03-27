@@ -1,4 +1,7 @@
+const fs = require('fs')
+const handlebars = require('handlebars')
 const nodemailer = require('nodemailer')
+const path = require('path')
 
 const isValid = require('../functions/isValid')
 const TaskM = require('../models/Task.model')
@@ -44,14 +47,20 @@ const TaskResolvers = {
                             },
                         })
 
-                        const name = 'Sander'
+                        const filePath = path.join(__dirname, '../templates/welcome.html')
+                        const source = fs.readFileSync(filePath, 'utf-8').toString()
+                        const template = handlebars.compile(source)
 
-                        // let info = await transporter.sendMail({
-                        //     from: '"Sander from Tasks" <tasks@sandervreeken.com>', 
-                        //     to: 'info@sandervreeken.com', 
-                        //     subject: "Password Reset", 
-                        //     html: `<b>Hello ${name}?</b>`, 
-                        // })
+                        const replacements = {
+                            name: 'Sander Vreeken'
+                        }
+                        const html = template(replacements)
+                        let info = await transporter.sendMail({
+                            from: '"Sander from Tasks" <tasks@sandervreeken.com>', 
+                            to: 'info@sandervreeken.com', 
+                            subject: "Password Reset", 
+                            html,
+                        })
 
                         console.log('Message sent: %s', info.messageId)
 
